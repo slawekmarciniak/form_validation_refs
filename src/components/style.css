@@ -1,0 +1,58 @@
+
+
+.formContainer {
+    position: relative;
+    width: 300px;
+    border: 1px solid black;
+    margin: 20px auto 0 auto;
+}
+
+.form {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    padding: 20px;
+}
+
+input, textarea {
+    display: block;
+}
+
+input:required {
+    border-color: red;
+  }
+
+label {
+    padding: 10px;
+}
+
+label.sex input {
+display: inline;
+}
+
+div.send {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    background-color: yellow;
+}
+
+.formButton {
+    margin: 10px;
+    background-color: yellow;
+    text-transform: uppercase;
+}
+
+div.message {
+    color: red;
+    font-style: italic;
+    font-size: 10px;
+}
