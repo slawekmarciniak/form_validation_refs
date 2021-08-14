@@ -5,6 +5,8 @@
     width: 300px;
     border: 1px solid black;
     margin: 20px auto 0 auto;
+    box-shadow: 5px 5px 4px 6px #888888;
+    border-radius: 5px;
 }
 
 .form {
@@ -18,6 +20,8 @@
 
 input, textarea {
     display: block;
+    border-radius: 3px;
+    border: 1px solid black;
 }
 
 input:required {
@@ -49,6 +53,7 @@ div.send {
     margin: 10px;
     background-color: yellow;
     text-transform: uppercase;
+    border-radius: 5px;
 }
 
 div.message {

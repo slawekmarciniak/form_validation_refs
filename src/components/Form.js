@@ -1,4 +1,11 @@
 import { useState, useRef } from "react";
+import {
+  nameValidation,
+  textValidation,
+  emailValidation,
+  sexValidation,
+  confirmValidation,
+} from "./validation";
 import "./style.css";
 
 const Form = () => {
@@ -25,7 +32,7 @@ const Form = () => {
 
   const handleNameChange = (e) => {
     setName(e.target.value);
-    if (nameInput.current.style.border === "2px solid red") {
+    if (nameMessage.current.textContent) {
       nameInput.current.style.border = "1px solid black";
       nameMessage.current.textContent = "";
     }
@@ -33,7 +40,7 @@ const Form = () => {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    if (emailInput.current.style.border === "2px solid red") {
+    if (emailMessage.current.textContent) {
       emailInput.current.style.border = "1px solid black";
       emailMessage.current.textContent = "";
     }
@@ -41,7 +48,7 @@ const Form = () => {
 
   const handleTextChange = (e) => {
     setText(e.target.value);
-    if (textInput.current.style.border === "2px solid red") {
+    if (textMessage.current.textContent) {
       textInput.current.style.border = "1px solid black";
       textMessage.current.textContent = "";
     }
@@ -58,7 +65,7 @@ const Form = () => {
       setRadioMale(false);
     }
 
-    if ((radioFemaleInput.current.style.color = "red")) {
+    if (radioSexMessage.current.textContent) {
       radioFemaleInput.current.style.color = "black";
       radioMaleInput.current.style.color = "black";
       radioSexMessage.current.textContent = "";
@@ -74,28 +81,18 @@ const Form = () => {
     }
   };
 
-  const addMessageIfInputIsEmpty = () => {
-    if (!name) {
-      nameInput.current.style.border = "2px solid red";
-      nameMessage.current.textContent = "field name is required";
-    }
-    if (!email) {
-      emailInput.current.style.border = "2px solid red";
-      emailMessage.current.textContent = "field email is required";
-    }
-    if (!text) {
-      textInput.current.style.border = "2px solid red";
-      textMessage.current.textContent = "field text is required";
-    }
-    if (!radioMale && !radioFemale) {
-      radioFemaleInput.current.style.color = "red";
-      radioMaleInput.current.style.color = "red";
-      radioSexMessage.current.textContent = "field sex is required";
-    }
-    if (!confirmation) {
-      checkboxInput.current.style.color = "red";
-      checkboxMessage.current.textContent = "please confirm conditions";
-    }
+  const checkInputsValidation = () => {
+    nameValidation(nameInput, nameMessage, name);
+    emailValidation(emailInput, emailMessage, email);
+    textValidation(textInput, textMessage, text);
+    sexValidation(
+      radioMale,
+      radioFemale,
+      radioFemaleInput,
+      radioMaleInput,
+      radioSexMessage
+    );
+    confirmValidation(confirmation, checkboxInput, checkboxMessage);
   };
 
   const showSendFormInfo = () => {
@@ -103,9 +100,18 @@ const Form = () => {
   };
 
   const handleFormButton = () => {
-    addMessageIfInputIsEmpty();
+    checkInputsValidation();
 
-    if (name && email && text && confirmation && (radioMale || radioFemale)) {
+    if (
+      name &&
+      email &&
+      text &&
+      confirmation &&
+      (radioMale || radioFemale) &&
+      !nameMessage.current.textContent &&
+      !emailMessage.current.textContent &&
+      !textMessage.current.textContent
+    ) {
       showSendFormInfo();
       setName("");
       setEmail("");
@@ -136,7 +142,7 @@ const Form = () => {
             <input
               name="email"
               ref={emailInput}
-              type="email"
+              type="text"
               value={email}
               onChange={handleEmailChange}
             />
@@ -192,7 +198,7 @@ const Form = () => {
           </button>
         </form>
         {isFormSend && (
-          <div className="message send">
+          <div className="send">
             <span>form is send</span>
             <button onClick={showSendFormInfo} className="formButton">
               back
