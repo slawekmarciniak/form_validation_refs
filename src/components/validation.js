@@ -5,7 +5,6 @@ const nameValidation = (nameInput, nameMessage, name) => {
   } else if (name.length < 3) {
     nameInput.current.style.border = "2px solid red";
     nameMessage.current.textContent = "name should have minium 3 digits";
-    alert("name is to short");
   }
 };
 const emailValidation = (emailInput, emailMessage, email) => {
