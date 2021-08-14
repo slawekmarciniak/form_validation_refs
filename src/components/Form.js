@@ -74,8 +74,7 @@ const Form = () => {
 
   const handleCheckboxChange = () => {
     setConfirmation((prev) => !prev);
-
-    if ((checkboxInput.current.style.color = "red")) {
+    if (checkboxMessage.current.textContent) {
       checkboxInput.current.style.color = "black";
       checkboxMessage.current.textContent = "";
     }
@@ -103,14 +102,11 @@ const Form = () => {
     checkInputsValidation();
 
     if (
-      name &&
-      email &&
-      text &&
-      confirmation &&
-      (radioMale || radioFemale) &&
       !nameMessage.current.textContent &&
       !emailMessage.current.textContent &&
-      !textMessage.current.textContent
+      !textMessage.current.textContent &&
+      !radioSexMessage.current.textContent &&
+      !checkboxMessage.current.textContent
     ) {
       showSendFormInfo();
       setName("");

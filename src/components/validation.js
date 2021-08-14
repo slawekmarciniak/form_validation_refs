@@ -15,13 +15,11 @@ const emailValidation = (emailInput, emailMessage, email) => {
   } else if (email.length < 4) {
     emailInput.current.style.border = "2px solid red";
     emailMessage.current.textContent = "email is to short";
-    alert("email is to short");
   } else if (
-    /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === false
+    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email) === false
   ) {
     emailInput.current.style.border = "2px solid red";
     emailMessage.current.textContent = "email address is invalid";
-    alert("email is invalid");
   }
 };
 const textValidation = (textInput, textMessage, text) => {
@@ -31,7 +29,6 @@ const textValidation = (textInput, textMessage, text) => {
   } else if (text.length < 10) {
     textInput.current.style.border = "2px solid red";
     textMessage.current.textContent = "bio should have minimum 10 letters ";
-    alert("bio is to short");
   }
 };
 
